@@ -16,8 +16,8 @@ class Book(models.Model):
     isbn = models.CharField(verbose_name='Código Único', max_length=15, unique=True)
     # author = models.OneToOneField(Author, on_delete=models.CASCADE)     # Uno a uno, es decir, un registro de Author le corresponde solo un registro de Book. CASCADE: Cuando se borra el registro padre (Author), se elimina el registro en Book
     # author = models.OneToOneField(Author, on_delete=models.SET_NULL, null=True)     # Cuando se borra el registro padre (Author), el campo author en el model Book queda como NULL, se debe indicar el parámetro null=True
-    # author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True)     # Uno a muchos, es decir, un registro de Author le corresponde muchos registros de Book
-    author = models.ManyToManyField(Author)     # Muchos a muchos, es decir, varios registros de Author le corresponden muchos registros de Book
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)     # Uno a muchos, es decir, un registro de Author le corresponde muchos registros de Book
+    # author = models.ManyToManyField(Author)     # Muchos a muchos, es decir, varios registros de Author le corresponden muchos registros de Book
 
     class Meta:
         verbose_name = 'Book'
